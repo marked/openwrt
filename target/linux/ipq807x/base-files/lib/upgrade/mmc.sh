@@ -21,8 +21,8 @@ mmc_do_upgrade() {
 			[ -z "$kernel" ] && kernel=$(find_mmc_part ${kernelname})
 			[ -z "$rootfs" ] && rootfs=$(find_mmc_part ${rootfsname})
 
-			[ -z "$kernel" ] && echo "Upgrade failed: kernel partition not found! Rebooting..." && reboot -f
-			[ -z "$rootfs" ] && echo "Upgrade failed: rootfs partition not found! Rebooting..." && reboot -f
+			[ -z "$kernel" ] && echo "Upgrade failed: kernel partition not found! Rebooting..."
+			[ -z "$rootfs" ] && echo "Upgrade failed: rootfs partition not found! Rebooting..."
 
 	mmc_do_flash $tar_file $kernel $rootfs
 
@@ -49,7 +49,6 @@ mmc_do_flash() {
 	[ $offset -lt 65536 ] && {
 		echo Wrong size for rootfs: $offset
 		sleep 10
-		reboot -f
 	}
 
 	# Cleanup
